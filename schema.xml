@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="chat" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+ <table name="user" idMethod="native">
+ <column name="uname" type="VARCHAR" size="20" primaryKey="true" required="true" />
+ <column name="rname" type="VARCHAR" size="50" required="true" />
+ <column name="pw" type="VARCHAR" size="50" required="true" />
+ <column name="alter" type="SMALLINT" required="true" />
+ <vendor type="mysql">
+ <parameter name="Engine" value="InnoDB"/>
+ </vendor>
+ </table>
+ <table name="message" idMethod="native">
+  <column name="mid" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+  <column name="body" type="VARCHAR" size="2000" required="true" />
+  <column name="subject" type="VARCHAR" size="30" required="true" />
+  <column name="priority" type="SMALLINT" required="true" />
+  <column name="uname" type="VARCHAR" size="20" required="true" />
+  <foreign-key foreignTable="user">
+   <reference local="uname" foreign="uname" />
+  </foreign-key>
+  <vendor type="mysql">
+   <parameter name="Engine" value="InnoDB" />
+  </vendor>
+ </table>
+ <table name="receiver">
+  <column name="uname" type="VARCHAR" size="20" required="true" primaryKey="true"/>
+  <column name="mid" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+  <column name="timestamp" type="TIMESTAMP" required="true" primaryKey="true"/>
+  <foreign-key foreignTable="user">
+   <reference local="uname" foreign="uname"/>
+  </foreign-key>
+  <foreign-key foreignTable="message">
+   <reference local="mid" foreign="mid"/>
+  </foreign-key>
+  <vendor type="mysql">
+   <parameter name="Engine" value="InnoDB"/>
+  </vendor>
+ </table>
+ <table name="ressource">
+  <column name="rid" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+  <column name="mid" type="INTEGER" required="true"/>
+  <column name="url" type="VARCHAR" size="255" required="true"/>
+  <foreign-key foreignTable="message">
+   <reference local="mid" foreign="mid"/>
+  </foreign-key>
+  <vendor type="mysql">
+   <parameter name="Engine" value="InnoDB"/>
+  </vendor>
+ </table>
+</database>

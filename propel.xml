@@ -1,0 +1,23 @@
+<config>
+ <propel>
+  <database>
+   <connections>
+    <connection id="chat">
+     <adapter>mysql</adapter>
+     <classname>Propel\Runtime\Connection\ConnectionWrapper</classname>
+     <dsn>mysql:host=localhost;dbname=chat</dsn>
+     <user>insy</user>
+     <password>insy</password>
+    </connection>
+   </connections>
+  </database>
+  <runtime>
+   <defaultConnection>chat</defaultConnection>
+   <connection>chat</connection>
+  </runtime>
+  <generator>
+   <defaultConnection>chat</defaultConnection>
+   <connection>chat</connection>
+  </generator>
+ </propel>
+</config>
